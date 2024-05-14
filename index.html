@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <title>API</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <style>
+        body{
+        color:#fff;
+         margin: 0;
+         padding: 0;
+        }
+        #plantilla{
+            max-width: 1200px;
+            max-height: 810px;
+            background-color: aqua;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="plantilla"></div>
+
+    <script>
+    $(document).ready(function(){
+    $.ajax({
+        url: "api.json",
+        dataType: "json",
+        success: function(data){
+            let images = data; 
+            let currentIndex = 0;
+
+            function showNextImage() {
+                $('.aleatorio').hide();
+                $('.aleatorio').remove();
+                $('#plantilla').append('<img class="aleatorio" src="' + images[currentIndex].img + '" style="display: none;">');
+                $('.aleatorio').fadeIn();
+                currentIndex = (currentIndex + 1) % images.length;
+            }
+
+            showNextImage();
+            setInterval(showNextImage, 5000);
+                }
+            });
+    });
+
+    </script>
+</body>
+</html>
