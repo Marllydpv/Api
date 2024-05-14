@@ -25,13 +25,17 @@
     <div id="plantilla"></div>
 
     <script>
-    $(document).ready(function(){
+$(document).ready(function(){
     $.ajax({
         url: "api.json",
         dataType: "json",
         success: function(data){
             let images = data; 
-            let currentIndex = 0;
+            let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
+            let startTime = parseInt(localStorage.getItem('startTime')) || Date.now();
+            let elapsedTime = Date.now() - startTime;
+            let elapsedIntervals = Math.floor(elapsedTime / 5000);
+            currentIndex = (currentIndex + elapsedIntervals) % images.length;
 
             function showNextImage() {
                 $('.aleatorio').hide();
@@ -39,13 +43,15 @@
                 $('#plantilla').append('<img class="aleatorio" src="' + images[currentIndex].img + '" style="display: none;">');
                 $('.aleatorio').fadeIn();
                 currentIndex = (currentIndex + 1) % images.length;
+                localStorage.setItem('currentIndex', currentIndex);
+                localStorage.setItem('startTime', Date.now());
             }
 
             showNextImage();
-            setInterval(showNextImage, 10000);
-                }
-            });
-    });
+            setInterval(showNextImage, 5000);
+        }
+    });
+});
 
     </script>
 </body>
