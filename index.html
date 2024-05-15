@@ -46,9 +46,10 @@ $(document).ready(function(){
                 localStorage.setItem('currentIndex', currentIndex);
                 localStorage.setItem('startTime', Date.now());
             }
-
+            /*  cambiar unidadMedida referente a 20 segundos de cada pauta */
+            let unidadMedida = 80000;
             showNextImage();
-            setInterval(showNextImage, 40000);
+            setInterval(showNextImage,unidadMedida);
                      }
                         });
                             });
