@@ -34,7 +34,7 @@ $(document).ready(function(){
             let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
             let startTime = parseInt(localStorage.getItem('startTime')) || Date.now();
             let elapsedTime = Date.now() - startTime;
-            let elapsedIntervals = Math.floor(elapsedTime / 100000);
+            let elapsedIntervals = Math.floor(elapsedTime / 140000);
             currentIndex = (currentIndex + elapsedIntervals) % images.length;
 
             function showNextImage() {
@@ -47,7 +47,7 @@ $(document).ready(function(){
                 localStorage.setItem('startTime', Date.now());
             }
             /*  cambiar unidadMedida referente a 20 segundos de cada pauta */
-            let unidadMedida = 100000;
+            let unidadMedida = 140000;
             showNextImage();
             setInterval(showNextImage,unidadMedida);
                      }
