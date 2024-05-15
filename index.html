@@ -34,7 +34,7 @@ $(document).ready(function(){
             let currentIndex = parseInt(localStorage.getItem('currentIndex')) || 0;
             let startTime = parseInt(localStorage.getItem('startTime')) || Date.now();
             let elapsedTime = Date.now() - startTime;
-            let elapsedIntervals = Math.floor(elapsedTime / 5000);
+            let elapsedIntervals = Math.floor(elapsedTime / 60000);
             currentIndex = (currentIndex + elapsedIntervals) % images.length;
 
             function showNextImage() {
